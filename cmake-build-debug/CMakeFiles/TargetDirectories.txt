@@ -1,0 +1,3 @@
+/Users/viktoriaandrusenko/CLionProjects/calgeo 0.0.3 2/calgeo 0.0.3/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/Users/viktoriaandrusenko/CLionProjects/calgeo 0.0.3 2/calgeo 0.0.3/cmake-build-debug/CMakeFiles/edit_cache.dir
+/Users/viktoriaandrusenko/CLionProjects/calgeo 0.0.3 2/calgeo 0.0.3/cmake-build-debug/CMakeFiles/calgeo.dir
