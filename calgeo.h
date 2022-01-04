@@ -8,13 +8,13 @@ typedef unsigned int ui;
 typedef long long int lli;
 
 /*
- * Some useful functions for points
+ * Points
  */
 bool isOnLine(vector<vector<ld>>);
 bool isOnPlane(vector<vector<ld>>);
 
 /*
- * Some useful operations for vectors
+ * Vectors
  */
 ld vectorLength(const vector<ld>&);
 ld angle(const vector<ld>&, const vector<ld>&);
@@ -24,7 +24,7 @@ vector<ld> addVectors(vector<ld>, vector<ld>);
 vector<ld> subtractionVectors(vector<ld> v1, vector <ld> v2);
 vector<ld> vectorNormalization(vector<ld>);
 
-/* ?????????????????????????
+/*
  * Complex numbers class
  */
 class ComplexNumber{
@@ -79,9 +79,11 @@ class Line{
     bool isCross(Line);
 };
 
-
 vector<ld> pointLineCross(Line line1, Line line2);
 
+/*
+ *Class Plane
+ */
 class Plane{
 private:
     vector<ld> direct;
@@ -100,10 +102,6 @@ public:
 /*
  * Matrices
  */
-const ld accuracy = 1e-10;
-const lli sci = 4;
-
-using namespace std;
 
 vector<vector<ld>> matrixProduct(vector<vector<ld>>, vector<vector<ld>>, bool side = true);
 void showMatrix(vector<vector<ld>>);
@@ -154,6 +152,13 @@ class Paraboloid : public Quadric{
 public:
 
 };
+
+/*
+ * Matrices
+ */
+const ld accuracy = 1e-10;
+const lli sci = 4;
+
 
 vector<vector<ld>> matrixProduct(vector<vector<ld>>, vector<vector<ld>>, bool side);
 void showMatrix(vector<vector<ld>>);
@@ -244,7 +249,7 @@ public:
 
     vector<vector<ComplexNumber>> inverseMatrix();
 
-    vector<ComplexNumber> solveEquasion(vector<ComplexNumber>);
+    vector<ComplexNumber> solveEquasion(vector<ComplexNumber>); // we have to revise this
 
     cMatrix operator+(cMatrix);
     cMatrix operator-(cMatrix);
