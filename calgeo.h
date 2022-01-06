@@ -217,7 +217,9 @@ public:
     Matrix operator^(int);
 
     vector<ld> solveEquasion(vector<ld>);
+    vector<vector<ld>> findGeneralSolution(vector<ld>);
     unsigned int rank();
+    unsigned int rankofExtended(vector<ld>);
 };
 class cMatrix{
 private:
