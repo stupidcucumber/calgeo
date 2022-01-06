@@ -5,23 +5,20 @@ using namespace std;
 
 int main(){
     srand(time(0));
-    vector<vector<ld>> system={
-            {1,1,1},
-            {1,1,1},
-            {1,1,1},
-            {1,1,1},
-            {1,1,1},
-            {1,4,0},
-            {1,2,4}
+    Matrix test(4,7);
+    vector<vector<ld>> testv={
+            {5,6,3,2,2,4,1},
+            {5,5,3,2,2,7,2},
+            {5,5,8,1,1,7,3},
+            {5,5,8,1,1,7,3}
     };
-    vector<ld> coefs = {4,4,4,4,4, 1, 45};
-    vector<ld> results;
-    Matrix m (7, 3);
-    m.setMatrix(system);
-    results = m.solveEquasion(coefs);
-
-    for(auto i : results){
-        cout << i << endl;
+    test.setMatrix(testv);
+    vector<vector<ld>> testt=test.findGeneralSolution({2,2,9,9});
+    for(int j=0;j<testt.size();j++){
+        for(int i=0;i<testt[0].size();i++) {
+            cout << testt[j][i] << endl;
+        }
+        cout<<endl;
     }
 
     vector<ld> direct1 = {1, 1, 0};

@@ -1013,64 +1013,217 @@ Matrix Matrix::operator^(int power){
     return result;
 }
 
-vector<ld> Matrix::solveEquasion(vector<ld> constantT){//This doesn't work properly
+vector<ld> Matrix::solveEquasion(vector<ld> constantT){
     vector<ld>result={};
+    unsigned int rank =(*this).rank();
 
-    lli i = rows-1;
-    lli g = columns-1;
-    while (g >= 0 && i >= 0) {
-        for (lli s = i - 1; s >= 0; s--) {
-            if (matrix[i][g] != 0) break;
-            else changeRows(i, s);
-            ld d=constantT[s];
-            constantT[s]=constantT[i];
-            constantT[i]=d;
+    if(rank!=(*this).rankofExtended(constantT)){
+        cout<<"System does not have solutions (rank of matrix != rank of extended matrix)"<<endl;
+    }
+    else if ((rank<columns)&&(rank==(*this).rankofExtended(constantT))){
+        throw logic_error("Endless number of solutions! Use findGeneralSolution() instead");
+    }
+    else {
+        Matrix copy(rows,columns);
+        copy.setMatrix(matrix);
 
-        }
-        if (matrix[i][g] != 0) {
-            lli j;
-            ld c;
-            for (j = i - 1; j >= 0; j--) {
-                c=(-1)/matrix[i][g] * matrix[j][g];
-                addRows(c, j, i);
-                constantT[j]+=constantT[i]*c;
+        lli i = rows - 1;
+        lli g = columns - 1;
+        while (g >= 0 && i >= 0) {
+            for (lli s = i - 1; s >= 0; s--) {
+                if (copy.matrix[i][g] != 0) break;
+                else copy.changeRows(i, s);
+                ld d = constantT[s];
+                constantT[s] = constantT[i];
+                constantT[i] = d;
+
             }
-            i--;
-        }
-        g--;
-    }
-
-    i = 0;
-    g = 0;
-    while (g < columns && i < rows) {
-        for (lli s = i + 1; s < rows; s++) {
-            if (matrix[i][g] != 0) break;
-            else changeRows(i, s);
-
-            ld d = constantT[i];
-            constantT[i] = constantT[s];
-            constantT[s] = d;
-        }
-        if (matrix[i][g] != 0) {
-            lli j;
-            ld c;
-            for (j = i + 1; j < rows; j++) {
-                c=(-1)/matrix[i][g] * matrix[j][g];
-                addRows(c, j, i);
-                constantT[j]+=constantT[i]*c;
+            if (copy.matrix[i][g] != 0) {
+                lli j;
+                ld c;
+                for (j = i - 1; j >= 0; j--) {
+                    c = (-1) / copy.matrix[i][g] * copy.matrix[j][g];
+                    copy.addRows(c, j, i);
+                    constantT[j] += constantT[i] * c;
+                }
+                i--;
             }
-
-            i++;
+            g--;
         }
-        g++;
+
+        i = 0;
+        g = 0;
+        while (g < columns && i < rows) {
+            for (lli s = i + 1; s < rows; s++) {
+                if (copy.matrix[i][g] != 0) break;
+                else copy.changeRows(i, s);
+
+                ld d = constantT[i];
+                constantT[i] = constantT[s];
+                constantT[s] = d;
+            }
+            if (copy.matrix[i][g] != 0) {
+                lli j;
+                ld c;
+                for (j = i + 1; j < rows; j++) {
+                    c = (-1) / copy.matrix[i][g] * copy.matrix[j][g];
+                    copy.addRows(c, j, i);
+                    constantT[j] += constantT[i] * c;
+                }
+
+                i++;
+            }
+            g++;
+        }
+
+        for (int i = 0; i < columns; i++) {
+            // cout << constantT[i] << endl;
+            if(abs(constantT[i] / copy.matrix[i][i])>accuracy) {
+                result.push_back(constantT[i] / copy.matrix[i][i]);
+            }else result.push_back(0);
+        }
     }
-
-
-    for(int i=0; i<columns;i++){
-        result.push_back(constantT[i]/matrix[i][i]);
-    }
-
     return result;
+}
+
+vector<vector<ld>> Matrix::findGeneralSolution(vector<ld> constantT){
+    vector<vector<ld>>result;
+    unsigned int rank =(*this).rank();
+
+    if(rank!=(*this).rankofExtended(constantT)){
+        cout<<"System does not have solutions (rank of matrix != rank of extended matrix)"<<endl;
+        return result;
+    }
+    else if(rank>columns){
+        cout<<"System does not have solutions"<<endl;
+        return result;
+    }
+    else if ((rank==columns)&&(rank==(*this).rankofExtended(constantT))) {
+        result.push_back((*this).solveEquasion(constantT));
+        return result;
+    }
+    else if ((rank<columns)&&(rank==(*this).rankofExtended(constantT))) {
+        Matrix input(rows, columns);
+        input.setMatrix(matrix);
+        vector<ld> copyofinput = constantT;
+
+        lli i = 0;
+        lli g = 0;
+        while (g < columns && i < rows) {
+            for (lli s = i + 1; s < rows; s++) {
+                if (input.matrix[i][g] != 0) break;
+                else input.changeRows(i, s);
+
+                ld d = constantT[i];
+                constantT[i] = constantT[s];
+                constantT[s] = d;
+            }
+            if (input.matrix[i][g] != 0) {
+                lli j;
+                ld c;
+                for (j = i + 1; j < rows; j++) {
+                    c = (-1) / input.matrix[i][g] * input.matrix[j][g];
+                    input.addRows(c, j, i);
+                    constantT[j] += constantT[i] * c;
+                }
+
+                i++;
+            }
+            g++;
+        }
+
+        int freevariables= columns-rank;
+        Matrix copy(rank,rank);
+        vector<int> indexbasic; //Indexes of basic and free variables
+        vector<int> indexfree;
+        int c=0,r=0;
+        for(; columns > c; c++){
+            if(r<rows){
+                if(input.matrix[r][c]!=0){
+                    indexbasic.push_back(c);
+                    r++;
+                }else {
+                    indexfree.push_back(c);
+                }
+            }
+            else {
+                indexfree.push_back(c);
+            }
+        }
+
+        for(int i=0;i<indexbasic.size();i++){
+            if(i!=indexbasic[i]){
+                input.changeColumns(i,indexbasic[i]);
+            }
+        }
+
+        vector<ld> temp;
+        for (int j = 0; j < rank; j++) {
+            for (int i = 0; i < rank; i++) {
+                temp.push_back( (ld) input.matrix[j][i]);
+            }
+            copy.matrix.push_back(temp);
+            temp.clear();
+        }
+
+        {   //finds partial solution
+            vector <ld> t=copy.solveEquasion(constantT);
+            vector <ld> tempresult;
+            for(int i=0,j=0,h=0;h<columns;h++){
+                if(i<indexbasic.size()){
+                    if(h==indexbasic[i]){
+                        tempresult.push_back(t[i]);
+                        i++;
+                    }else {
+                        tempresult.push_back(0);
+                        j++;
+                    }
+                }
+                else {
+                    tempresult.push_back(0);
+                    j++;
+                }
+            }
+            result.push_back(tempresult);
+        }
+
+        //finds solutions when one of the free variables equals to 1 and other to 0
+        for(int k=0,b=rank;k<indexfree.size();k++){
+            vector <ld> copyfree=constantT;
+            for(int j =0; j<copy.rows;j++){
+                copyfree[j]=(-1)*input.matrix[j][b];
+            }
+            b++;
+            vector <ld> t=copy.solveEquasion(copyfree);
+            vector <ld> tempresult;
+            for(int n=0,j=0,h=0; h < columns; h++){
+                if(n<indexbasic.size()){
+                    if(h==indexbasic[n]){
+                        tempresult.push_back(t[n]);
+                        n++;
+                    }else if(h==indexfree[k]){
+                        tempresult.push_back(1);
+                        j++;
+                    }else {
+                        tempresult.push_back(0);
+                        j++;
+                    }
+                }
+                else if(h==indexfree[k]){
+                    tempresult.push_back(1);
+                    j++;
+                }
+                else {
+                    tempresult.push_back(0);
+                    j++;
+                }
+            }
+            result.push_back(tempresult);
+        }
+        // result[0] = partial solution
+        // other elements in result = vectors of the fundamental system of solutions
+        return result;
+    }
 }
 
 unsigned int Matrix::rank(){
@@ -1089,6 +1242,24 @@ unsigned int Matrix::rank(){
         }
     }
     return result;
+}
+
+unsigned int Matrix::rankofExtended(vector<ld> constantT){
+    Matrix copy(rows,columns+1);
+
+    vector<ld> temp;
+    vector<vector<ld>> copyex;
+    for (int j = 0; j < rows; j++) {
+        for (int i = 0; i < columns; i++) {
+            temp.push_back( (ld) (*this).matrix[j][i]);
+        }
+        copyex.push_back(temp);
+        copyex[j].push_back(constantT[j]);
+        temp.clear();
+    }
+
+    copy.setMatrix(copyex);
+    return copy.rank();
 }
 
 void cMatrix::showMatrix() {
