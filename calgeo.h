@@ -7,14 +7,18 @@ typedef long double ld;
 typedef unsigned int ui;
 typedef long long int lli;
 
+
+const ld accuracy = 1e-11;
+const lli sci = 4;
+
 /*
- * Points
+ * Some useful functions for points
  */
 bool isOnLine(vector<vector<ld>>);
 bool isOnPlane(vector<vector<ld>>);
 
 /*
- * Vectors
+ * Some useful operations for vectors
  */
 ld vectorLength(const vector<ld>&);
 ld angle(const vector<ld>&, const vector<ld>&);
@@ -46,6 +50,8 @@ public:
     ComplexNumber operator-(ComplexNumber);
     ComplexNumber operator*(ComplexNumber);
     ComplexNumber operator/(ComplexNumber);
+    ComplexNumber operator+=(ComplexNumber);
+    ComplexNumber operator-=(ComplexNumber);
     bool operator==(ComplexNumber);
     bool operator!=(ComplexNumber);
     void operator=(ComplexNumber);
@@ -53,10 +59,10 @@ public:
     vector<ComplexNumber> root(ComplexNumber);
 };
 
-ComplexNumber setComplexNumber(ComplexNumber z, ld);
+ComplexNumber multiplyComplexNumber(ComplexNumber z, ld);
 ComplexNumber complexConjugate(ComplexNumber);
 ComplexNumber multiplicativeInverse(ComplexNumber);
-ComplexNumber complexOpposite(ComplexNumber);
+//ComplexNumber complexOpposite(ComplexNumber);
 
 /*
  * Class line
@@ -81,9 +87,6 @@ class Line{
 
 vector<ld> pointLineCross(Line line1, Line line2);
 
-/*
- *Class Plane
- */
 class Plane{
 private:
     vector<ld> direct;
@@ -103,6 +106,8 @@ public:
  * Matrices
  */
 
+using namespace std;
+
 vector<vector<ld>> matrixProduct(vector<vector<ld>>, vector<vector<ld>>, bool side = true);
 void showMatrix(vector<vector<ld>>);
 
@@ -114,9 +119,6 @@ protected:
     ld exc; //excetricity
     ld drx; //directix
 public:
-    Quadric(){
-    }
-
     virtual bool isEquasionCanonic() = 0;
     virtual bool isPointBelongs(vector<ld>) = 0;
 
@@ -152,13 +154,6 @@ class Paraboloid : public Quadric{
 public:
 
 };
-
-/*
- * Matrices
- */
-const ld accuracy = 1e-10;
-const lli sci = 4;
-
 
 vector<vector<ld>> matrixProduct(vector<vector<ld>>, vector<vector<ld>>, bool side);
 void showMatrix(vector<vector<ld>>);
@@ -217,7 +212,7 @@ public:
     Matrix operator^(int);
 
     vector<ld> solveEquasion(vector<ld>);
-    vector<vector<ld>> findGeneralSolution(vector<ld>);
+    vector<vector<ld>> findGeneralSolution(vector<ld> constantT);
     unsigned int rank();
     unsigned int rankofExtended(vector<ld>);
 };
@@ -243,7 +238,9 @@ public:
     void randValues(ld, ld);
     void showMatrix();
     void setMatrix(vector<vector<ComplexNumber>>);
+
     unsigned int cRank();
+    unsigned int cRankOfExtended(vector<ComplexNumber>);
 
     ComplexNumber determinant();
 
@@ -251,7 +248,8 @@ public:
 
     vector<vector<ComplexNumber>> inverseMatrix();
 
-    vector<ComplexNumber> solveEquasion(vector<ComplexNumber>); // we have to revise this
+    vector<ComplexNumber> solveEquasion(vector<ComplexNumber>);
+    vector<vector<ComplexNumber>> findGeneralSolution(vector<ComplexNumber> constantT);
 
     cMatrix operator+(cMatrix);
     cMatrix operator-(cMatrix);

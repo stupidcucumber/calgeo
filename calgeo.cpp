@@ -155,7 +155,7 @@ ComplexNumber multiplicativeInverse(ComplexNumber z){
     return inverse;
 }
 
-ComplexNumber setComplexNumber(ComplexNumber z, ld alpha){
+ComplexNumber multiplyComplexNumber(ComplexNumber z, ld alpha){
     z.setRealPart(z.getRealPart() * alpha);
     z.setImaginaryPart(z.getImaginaryPart() * alpha);
     return z;
@@ -194,6 +194,14 @@ ComplexNumber ComplexNumber::operator/(ComplexNumber z){return (*this) * multipl
 bool ComplexNumber::operator==(ComplexNumber z){return (realPart == z.getRealPart()) && (imaginaryPart == z.getImaginaryPart());}
 bool ComplexNumber::operator!=(ComplexNumber z){return (realPart != z.getRealPart() || imaginaryPart != z.getImaginaryPart());}
 void ComplexNumber::operator=(ComplexNumber z){realPart = z.getRealPart(); imaginaryPart = z.getImaginaryPart();}
+ComplexNumber ComplexNumber::operator+=(ComplexNumber z){
+    ComplexNumber k(realPart + z.getRealPart(), imaginaryPart + z.getImaginaryPart());
+    return k;
+}
+ComplexNumber ComplexNumber::operator-=(ComplexNumber z){
+    ComplexNumber k(realPart - z.getRealPart(), imaginaryPart - z.getImaginaryPart());
+    return k;
+}
 
 /*
  * Lines
@@ -242,7 +250,7 @@ bool Line::isPerpendicular(Line line) {return scalarProduct(direct, line.getDire
 bool Line::isOnOnePlane(Line line) {return scalarProduct(vectorProduct(direct, line.getDirectV()), subtractionVectors(point, line.getDefPoint())) == 0;}
 
 bool Line::isParallel(Line input){
-    if ((angle(input.getDirectV(),direct)==0)&& isOnOnePlane(input)) return 1;
+    if ((angle(input.getDirectV(),direct)==0) && isOnOnePlane(input)) return 1;
     else return 0;
 }
 
@@ -281,7 +289,7 @@ Plane::Plane(vector<ld> d, vector<ld> p){
     point = p;
 }
 
-bool Plane::isParallel(Line line){return scalarProduct(line.getDirectV(), direct)==0;}//What if line lies in plane
+bool Plane::isParallel(Line line){return scalarProduct(line.getDirectV(), direct) == 0;}//What if line lies in plane
 
 bool Plane::isParallel(Plane plane){//needs to be revised
     if (angle(plane.getDirectPlane(),direct)== 0) return 1;
@@ -308,7 +316,7 @@ bool Plane::isPointBelong(vector <ld> input){
 }
 
 bool Plane::isPerpendicular(Line line){
-    if (scalarProduct(line.getDirectV(),direct)==0) return 1;
+    if (abs(abs(scalarProduct(line.getDirectV(),direct)) - vectorLength(line.getDirectV()) * vectorLength(direct)) < accuracy) return 1;
     else return 0;
 }
 
@@ -1220,10 +1228,11 @@ vector<vector<ld>> Matrix::findGeneralSolution(vector<ld> constantT){
             }
             result.push_back(tempresult);
         }
-        // result[0] = partial solution
-        // other elements in result = vectors of the fundamental system of solutions
-        return result;
     }
+
+    // result[0] = partial solution
+    // other elements in result = vectors of the fundamental system of solutions
+    return result;
 }
 
 unsigned int Matrix::rank(){
@@ -1512,7 +1521,7 @@ vector<vector<ComplexNumber>> cMatrix::inverseMatrix() {
         }
         if (matrix[i][g] != k) {
             for (lli j = i - 1; j >= 0; j--) {
-                addRows(setComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
             }
             i--;
         }
@@ -1586,7 +1595,7 @@ void cMatrix::triangle(bool side){
              */
             if (matrix[i][g] != k) {
                 for (lli j = i + 1; j < rows; j++) {
-                    addRows(setComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                    addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
                 }
                 i++;
             }
@@ -1604,7 +1613,7 @@ void cMatrix::triangle(bool side){
             }
             if (matrix[i][g] != k) {
                 for (lli j = i - 1; j >= 0; j--) {
-                    addRows(setComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                    addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
                 }
                 i--;
             }
@@ -1659,7 +1668,7 @@ vector<ComplexNumber> cMatrix::solveEquasion(vector<ComplexNumber> constantT){//
         }
         if (matrix[i][g] != k) {
             for (lli j = i - 1; j >= 0; j--) {
-                addRows(setComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
             }
             i--;
         }
@@ -1670,7 +1679,7 @@ vector<ComplexNumber> cMatrix::solveEquasion(vector<ComplexNumber> constantT){//
     cout << endl;
 
     for(lli h = 0; h < rows; h++){
-        if(abs((matrix[h][columns - 1] / matrix[h][h]).getRealPart() > accuracy || (matrix[h][columns - 1] / matrix[h][h]).getImaginaryPart() > accuracy))
+        if(abs((matrix[h][columns - 1] / matrix[h][h]).getRealPart()) > accuracy || abs((matrix[h][columns - 1] / matrix[h][h]).getImaginaryPart()) > accuracy)
             result.push_back(matrix[h][columns - 1] / matrix[h][h]);
         else result.push_back(k);
     }
@@ -1681,4 +1690,168 @@ vector<ComplexNumber> cMatrix::solveEquasion(vector<ComplexNumber> constantT){//
     columns--;
 
     return result;
+}
+
+vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber> constantT) {
+        vector<vector<ComplexNumber>>result;
+        unsigned int rank =(*this).cRank();
+        unsigned int extendedRank = (*this).cRankOfExtended(constantT);
+
+        if(rank!=extendedRank){
+            cout<<"System does not have solutions (rank of matrix != rank of extended matrix)"<<endl;
+            return result;
+        }
+        else if(rank>columns){
+            cout<<"System does not have solutions"<<endl;
+            return result;
+        }
+        else if ((rank==columns)&&(rank==extendedRank)) {
+            result.push_back((*this).solveEquasion(constantT));
+            return result;
+        }
+
+        else if ((rank<columns)&&(rank==extendedRank)) {
+            cMatrix input(rows, columns);
+            ComplexNumber zero(0, 0);
+            ComplexNumber minusOne(-1, 0);
+            input.setMatrix(matrix);
+            vector<ComplexNumber> copyofinput = constantT;
+
+            lli i = 0;
+            lli g = 0;
+            while (g < columns && i < rows) {
+                for (lli s = i + 1; s < rows; s++) {
+                    if (input.matrix[i][g] != zero) break;
+                    else input.changeRows(i, s);
+
+                    ComplexNumber d = constantT[i];
+                    constantT[i] = constantT[s];
+                    constantT[s] = d;
+                }
+                if (input.matrix[i][g] != zero) {
+                    lli j;
+                    ComplexNumber c;
+                    for (j = i + 1; j < rows; j++) {
+                        c = minusOne / input.matrix[i][g] * input.matrix[j][g];
+                        input.addRows(c, j, i);
+                        constantT[j] = constantT[j] + constantT[i] * c;
+                    }
+
+                    i++;
+                }
+                g++;
+            }
+
+            int freevariables= columns-rank;
+            cMatrix copy(rank,rank);
+            vector<int> indexbasic; //Indexes of basic and free variables
+            vector<int> indexfree;
+            int c=0,r=0;
+            for(; columns > c; c++){
+                if(r<rows){
+                    if(input.matrix[r][c] != zero){
+                        indexbasic.push_back(c);
+                        r++;
+                    }else {
+                        indexfree.push_back(c);
+                    }
+                }
+                else {
+                    indexfree.push_back(c);
+                }
+            }
+
+            for(int i=0;i<indexbasic.size();i++){
+                if(i!=indexbasic[i]){
+                    input.changeColumns(i,indexbasic[i]);
+                }
+            }
+
+            vector<ComplexNumber> temp;
+            for (int j = 0; j < rank; j++) {
+                for (int i = 0; i < rank; i++) {
+                    temp.push_back(input.matrix[j][i]);
+                }
+                copy.matrix.push_back(temp);
+                temp.clear();
+            }
+
+            {   //finds partial solution
+                vector <ComplexNumber> t=copy.solveEquasion(constantT);
+                vector <ComplexNumber> tempresult;
+                for(int i=0,j=0,h=0;h<columns;h++){
+                    if(i<indexbasic.size()){
+                        if(h==indexbasic[i]){
+                            tempresult.push_back(t[i]);
+                            i++;
+                        }else {
+                            tempresult.push_back(zero);
+                            j++;
+                        }
+                    }
+                    else {
+                        tempresult.push_back(zero);
+                        j++;
+                    }
+                }
+                result.push_back(tempresult);
+            }
+
+            //finds solutions when one of the free variables equals to 1 and other to 0
+            for(int k=0,b=rank;k<indexfree.size();k++){
+                ComplexNumber one(1, 0);
+                vector <ComplexNumber> copyfree=constantT;
+                for(int j =0; j<copy.rows;j++){
+                    copyfree[j]=minusOne*input.matrix[j][b];
+                }
+                b++;
+                vector <ComplexNumber> t=copy.solveEquasion(copyfree);
+                vector <ComplexNumber> tempresult;
+                for(int n=0,j=0,h=0; h < columns; h++){
+                    if(n<indexbasic.size()){
+                        if(h==indexbasic[n]){
+                            tempresult.push_back(t[n]);
+                            n++;
+                        }else if(h==indexfree[k]){
+                            tempresult.push_back(one);
+                            j++;
+                        }else {
+                            tempresult.push_back(zero);
+                            j++;
+                        }
+                    }
+                    else if(h==indexfree[k]){
+                        tempresult.push_back(one);
+                        j++;
+                    }
+                    else {
+                        tempresult.push_back(zero);
+                        j++;
+                    }
+                }
+                result.push_back(tempresult);
+            }
+        }
+
+    // result[0] = partial solution
+    // other elements in result = vectors of the fundamental system of solutions
+    return result;
+}
+
+unsigned int cMatrix::cRankOfExtended(vector<ComplexNumber> constantT){
+    cMatrix copy(rows,columns+1);
+
+    vector<ComplexNumber> temp;
+    vector<vector<ComplexNumber>> copyex;
+    for (int j = 0; j < rows; j++) {
+        for (int i = 0; i < columns; i++) {
+            temp.push_back((*this).matrix[j][i]);
+        }
+        copyex.push_back(temp);
+        copyex[j].push_back(constantT[j]);
+        temp.clear();
+    }
+
+    copy.setMatrix(copyex);
+    return copy.cRank();
 }

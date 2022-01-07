@@ -2,36 +2,45 @@
 #include "calgeo.h"
 
 using namespace std;
+long double squareRoot(long double n)
+{
+
+    long double x = n;
+    long double y = 1;
+    long double e = 1e-10;
+    while (x - y > e)
+    {
+        x = (x + y) / 2;
+        y = n / x;
+    }
+    //cout << x << "\n";
+    return x;
+}
 
 int main(){
     srand(time(0));
-    Matrix test(4,7);
-    vector<vector<ld>> testv={
-            {5,6,3,2,2,4,1},
-            {5,5,3,2,2,7,2},
-            {5,5,8,1,1,7,3},
-            {5,5,8,1,1,7,3}
-    };
-    test.setMatrix(testv);
-    vector<vector<ld>> testt=test.findGeneralSolution({2,2,9,9});
-    for(int j=0;j<testt.size();j++){
-        for(int i=0;i<testt[0].size();i++) {
-            cout << testt[j][i] << endl;
-        }
-        cout<<endl;
-    }
+    vector<ld> l = {1 , 1};
+    Elipsoid e(l);
 
-    vector<ld> direct1 = {1, 1, 0};
-    vector<ld> direct2 = {-1, 1, 0};
-    vector<ld> point1 = {0.5,0.5,0};
-    vector<ld> point2 = {-2,-3,0};
-    Line line1(direct1, point1);
-    Line line2(direct2, point2);
-    vector<ld> point = pointLineCross(line1, line2);
+    vector<ld> direct = {1, 1, 1};
 
-    for(auto i : point){
-        cout << i << endl;
-    }
+    Line line({1, 1, 1}, {0, 0, 0});
+    Line line2({-1, 1, 0}, {0, 0, 0});
+    Plane plane1(direct, {1, 1, 1}), plane2({1, 1, 2}, {1, 1, 1});
+
+    cout << plane1.isParallel(plane2) << endl;
+    cout << plane1.isPerpendicular(line) << endl;
+    cout << plane1.isParallel(line2) << endl;
+    cout << plane1.isPointBelong({1,1,1}) << endl;
+/*
+    vector<pair<string, ld>> d = e.findDirectrix();
+    ld ext = e.findExcetricity();
+    cout<<ext<<endl;
+    cout << e.isEquasionCanonic() << endl;
+    cout<<e.isPointBelongs({1 / sqrtl(2),1 / sqrtl(2)})<<endl;
+    for(auto i : d){
+        cout << i.first << " = " << i.second << endl;
+    }*/
 
     return 0;
 }
