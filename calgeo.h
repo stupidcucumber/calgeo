@@ -16,6 +16,16 @@ const lli sci = 4;
  */
 bool isOnLine(vector<vector<ld>>);
 bool isOnPlane(vector<vector<ld>>);
+/*
+ * Some useful operations for vectors
+ */
+ld vectorLength(const vector<ld>&);
+ld angle(const vector<ld>&, const vector<ld>&);
+vector<ld> vectorProduct(vector<ld>, vector<ld>);
+ld scalarProduct(vector <ld> v1, vector <ld> v2);
+vector<ld> addVectors(vector<ld>, vector<ld>);
+vector<ld> subtractionVectors(vector<ld> v1, vector <ld> v2);
+vector<ld> vectorNormalization(vector<ld>);
 
 /*
  * Complex numbers class
