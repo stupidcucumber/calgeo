@@ -88,7 +88,15 @@ Currently we are working on it and trying to learn more about shapes in multidim
 2. isPointBelongs(vector<ld> p) – checks whether the point belongs to the ellips.
 3. findExcetricity() – returns the excentricity of the ellips.
 4. findDirectrix() – returns the directrix of the ellips.
+## Future plans
+1. Make faster algorithms.
+2. Include functions for working with multidimensional figures.
+3. Implement UI for drawing graphs and working with 3D and 2D figures.
 
-
-## What are our goal?
+## Future plans
+1. Make faster algorithms.
+2. Include functions for working with multidimensional figures.
+3. Implement UI for drawing graphs and working with 3D and 2D figures.
+	
+## What are our goals?
 Our main goal is to make a reliable library which can help modeling/solving complex mathematical problems. Every mathematician needs a simple and at the same time a powerful instrument to work with numbers. By building such instrument we can vaguely help scientific community in further math exploration.
