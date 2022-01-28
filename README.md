@@ -106,9 +106,9 @@ returns the normalized vector.
 
 ##   Primitive objects
 Primitive objects include points, lines and planes. Functionality for working with points:
-#### isOnLine(vector<vector<long double>> p) ⟹ `bool`
+### isOnLine(vector<vector<long double>> p) ⟹ `bool`
 returns true if all given points lie on one line.
-#### isOnPlane(vector<vector<long double>> p) ⟹ `bool`
+### isOnPlane(vector<vector<long double>> p) ⟹ `bool`
 returns true if all given points lie on one plane.
 
 Class `Line` provides following methods:
@@ -147,13 +147,13 @@ returns the point of cross.
 	
 ##   Curves
 Currently we are working on it and trying to learn more about shapes in multidimensional space. Our library works only with ellipse and provides class "Ellipsoid" which contains such methods:
-#### isEquationCanonic() ⟹ `bool`
+### isEquationCanonic() ⟹ `bool`
 checks whether the equation is canonic.
-#### isPointBelongs(vector<long double> p) ⟹ `bool`
+### isPointBelongs(vector<long double> p) ⟹ `bool`
 checks whether the point belongs to the ellipse.
-#### findExcetricity() ⟹ `long double`
+### findExcetricity() ⟹ `long double`
 returns the eccentricity of the ellipse.
-#### findDirectrix() ⟹ `vector<pair<string, long double>>`
+### findDirectrix() ⟹ `vector<pair<string, long double>>`
 returns the directrix of the ellipse.
 
 # Future plans
