@@ -1,6 +1,8 @@
 # calgeo
 Hello there! A repository you're currently looking at was created for fun, but then we realized how useful it can be in the future for the developer's community! Once in a while we make some minor changes to this library :). With your help we can make it great!
 
+Idia belongs to [CalculusEnjoyer](https://github.com/CalculusEnjoyer) and [stupidcucumber](https://github.com/stupidcucumber)
+
 # Features
 Our library contain functionality to deal with:
 1. Complex numbers
