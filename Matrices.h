@@ -59,10 +59,10 @@ public:
     Matrix operator/(Matrix);
     Matrix operator^(int);
 
-    vector<ld> solveEquasion(vector<ld>);
+    vector<ld> solveEquation(vector<ld> constantT);
     vector<vector<ld>> findGeneralSolution(vector<ld> constantT);
     unsigned int rank();
-    unsigned int rankofExtended(vector<ld>);
+    unsigned int rankOfExtended(vector<ld>);
 };
 
 class cMatrix{
