@@ -105,7 +105,7 @@ void Matrix::showMatrix(){//maybe add as parameters precision and whitespaces
  * This is the function, which shows any matrix.
  * @param v – user matrix;
  */
-void showMatrix(vector<vector<ld>> v){
+void Matrix::showMatrix(vector<vector<ld>> v){
     std::cout.precision(2);
 
     for(lli i = 0; i < v.size(); i++){
@@ -114,7 +114,7 @@ void showMatrix(vector<vector<ld>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<float>> v){
+void Matrix::showMatrix(vector<vector<float>> v){
     std::cout.precision(2);
 
     for(lli i = 0; i < v.size(); i++){
@@ -123,7 +123,7 @@ void showMatrix(vector<vector<float>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<double>> v){
+void Matrix::showMatrix(vector<vector<double>> v){
     std::cout.precision(5);
 
     for(lli i = 0; i < v.size(); i++){
@@ -132,7 +132,7 @@ void showMatrix(vector<vector<double>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<int>> v){
+void Matrix::showMatrix(vector<vector<int>> v){
     std::cout.precision(5);
 
     for(lli i = 0; i < v.size(); i++){
@@ -141,7 +141,7 @@ void showMatrix(vector<vector<int>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<long long int>> v){
+void Matrix::showMatrix(vector<vector<long long int>> v){
     std::cout.precision(5);
 
     for(lli i = 0; i < v.size(); i++){
@@ -507,7 +507,7 @@ void Matrix::clearMatrix() {matrix.clear();}
  * @param side – if 'false' then (matrix2) * (matrix1), else then (matrix1) * (matrix2). By default set as 'true'
  * @return
  */
-vector<vector<ld>> matrixProduct(vector<vector<ld>> matrix1, vector<vector<ld>> matrix2, bool side) {
+vector<vector<ld>> Matrix::matrixProduct(vector<vector<ld>> matrix1, vector<vector<ld>> matrix2, bool side) {
     vector<vector<ld>> product;
     if(side){
         if(matrix1[0].size() != matrix2.size()){
@@ -1268,7 +1268,7 @@ unsigned int cMatrix::cRank(){
     return result;
 }
 
-vector<ComplexNumber> cMatrix::solveEquasion(vector<ComplexNumber> constantT){//This doesn't work properly
+vector<ComplexNumber> cMatrix::solveEquation(vector<ComplexNumber> constantT){//This doesn't work properly
     //if(determinant() == 0 || rows != columns) throw std::logic_error("The inverse matrix doesn't exist!");
 
     vector<ComplexNumber> result;
@@ -1327,7 +1327,7 @@ vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber>
         return result;
     }
     else if ((rank==columns)&&(rank==extendedRank)) {
-        result.push_back((*this).solveEquasion(constantT));
+        result.push_back((*this).solveEquation(constantT));
         return result;
     }
 
@@ -1398,7 +1398,7 @@ vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber>
         }
 
         {   //finds partial solution
-            vector <ComplexNumber> t=copy.solveEquasion(constantT);
+            vector <ComplexNumber> t= copy.solveEquation(constantT);
             vector <ComplexNumber> tempresult;
             for(int i=0,j=0,h=0;h<columns;h++){
                 if(i<indexbasic.size()){
@@ -1426,7 +1426,7 @@ vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber>
                 copyfree[j]=minusOne*input.matrix[j][b];
             }
             b++;
-            vector <ComplexNumber> t=copy.solveEquasion(copyfree);
+            vector <ComplexNumber> t= copy.solveEquation(copyfree);
             vector <ComplexNumber> tempresult;
             for(int n=0,j=0,h=0; h < columns; h++){
                 if(n<indexbasic.size()){

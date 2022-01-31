@@ -4,94 +4,110 @@
 	<Project>
 		<Option title="calgeo"/>
 		<Option makefile_is_custom="1"/>
-		<Option compiler="msvc8"/>
+		<Option compiler="gcc"/>
 		<Option virtualFolders="CMake Files\;"/>
 		<Build>
 			<Target title="all">
-				<Option working_dir="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug"/>
+				<Option working_dir="E:/Projects/calgeo/calgeo/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 all"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="edit_cache">
-				<Option working_dir="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug"/>
+				<Option working_dir="E:/Projects/calgeo/calgeo/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 edit_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="calgeo">
-				<Option output="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug/calgeo.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug"/>
+				<Option output="E:/Projects/calgeo/calgeo/cmake-build-debug/calgeo.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Projects/calgeo/calgeo/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="msvc8"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 calgeo"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 calgeo"/>
+					<CompileFile command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="calgeo/fast">
-				<Option output="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug/calgeo.exe" prefix_auto="0" extension_auto="0"/>
-				<Option working_dir="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug"/>
+				<Option output="E:/Projects/calgeo/calgeo/cmake-build-debug/calgeo.exe" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="E:/Projects/calgeo/calgeo/cmake-build-debug"/>
 				<Option object_output="./"/>
 				<Option type="1"/>
-				<Option compiler="msvc8"/>
+				<Option compiler="gcc"/>
 				<Compiler>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\ATLMFC\include"/>
-					<Add directory="C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\VC\Tools\MSVC\14.29.30133\include"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\ucrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\shared"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\um"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\winrt"/>
-					<Add directory="C:\Program Files (x86)\Windows Kits\10\include\10.0.19041.0\cppwinrt"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/i686-w64-mingw32"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include/c++/backward"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/include-fixed"/>
+					<Add directory="E:/Software/mingw/mingw32/bin/../lib/gcc/i686-w64-mingw32/8.1.0/../../../../i686-w64-mingw32/include"/>
 				</Compiler>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 calgeo/fast"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 calgeo/fast"/>
+					<CompileFile command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 			<Target title="rebuild_cache">
-				<Option working_dir="C:/Users/Lenovo/Desktop/calgeo/cmake-build-debug"/>
+				<Option working_dir="E:/Projects/calgeo/calgeo/cmake-build-debug"/>
 				<Option type="4"/>
 				<MakeCommands>
-					<Build command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 rebuild_cache"/>
-					<CompileFile command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 &quot;$file&quot;"/>
-					<Clean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
-					<DistClean command="nmake /NOLOGO /f C:\Users\Lenovo\Desktop\calgeo\cmake-build-debug\Makefile VERBOSE=1 clean"/>
+					<Build command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="E:/Software/mingw/mingw32/bin/mingw32-make.exe -f &quot;E:/Projects/calgeo/calgeo/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/Lenovo/Desktop/calgeo/calgeo.cpp">
+		<Unit filename="E:/Projects/calgeo/calgeo/CONSTANTS.h">
 			<Option target="calgeo"/>
 		</Unit>
-		<Unit filename="C:/Users/Lenovo/Desktop/calgeo/calgeo.h">
+		<Unit filename="E:/Projects/calgeo/calgeo/ComplexNumbers.cpp">
 			<Option target="calgeo"/>
 		</Unit>
-		<Unit filename="C:/Users/Lenovo/Desktop/calgeo/main.cpp">
+		<Unit filename="E:/Projects/calgeo/calgeo/ComplexNumbers.h">
 			<Option target="calgeo"/>
 		</Unit>
-		<Unit filename="C:/Users/Lenovo/Desktop/calgeo/CMakeLists.txt">
+		<Unit filename="E:/Projects/calgeo/calgeo/Geometry.cpp">
+			<Option target="calgeo"/>
+		</Unit>
+		<Unit filename="E:/Projects/calgeo/calgeo/Geometry.h">
+			<Option target="calgeo"/>
+		</Unit>
+		<Unit filename="E:/Projects/calgeo/calgeo/Matrices.cpp">
+			<Option target="calgeo"/>
+		</Unit>
+		<Unit filename="E:/Projects/calgeo/calgeo/Matrices.h">
+			<Option target="calgeo"/>
+		</Unit>
+		<Unit filename="E:/Projects/calgeo/calgeo/Vectors.h">
+			<Option target="calgeo"/>
+		</Unit>
+		<Unit filename="E:/Projects/calgeo/calgeo/main.cpp">
+			<Option target="calgeo"/>
+		</Unit>
+		<Unit filename="E:/Projects/calgeo/calgeo/CMakeLists.txt">
 			<Option virtualFolder="CMake Files\"/>
 		</Unit>
 	</Project>
