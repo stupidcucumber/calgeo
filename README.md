@@ -86,7 +86,7 @@ a bunch of operators (-, +, *, /, ^) to make work with matrices easier.
 Also there are some useful functions:
 ### matrixProduct(vector<vector<long double>> m1, vector<vector<long double>> m2, bool side = false) ⟹ `vector<vector<long double>>`
 returns the product of matrices.
-### showMatrix(vector<vector<long double>> m) ⟹ `void`
+### showMatrix(vector<vector<<long double/int/float/double/long long int>>> m) ⟹ `void`
 sends the matrix to the standard output.
 
 ##   Vectors

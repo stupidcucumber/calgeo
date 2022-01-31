@@ -11,20 +11,20 @@ void ComplexNumber::showNumber() {
 
 ld ComplexNumber::length() { return sqrt(realPart * realPart + imaginaryPart * imaginaryPart); }
 
-ComplexNumber multiplicativeInverse(ComplexNumber z) {
+ComplexNumber ComplexNumber::multiplicativeInverse(ComplexNumber z) {
     ld sq = pow(z.getRealPart(), 2) + pow(z.getImaginaryPart(), 2);
     if (sq == 0) throw std::logic_error("You can't divide by 0");
     ComplexNumber inverse(z.getRealPart() / sq, (-1) * z.getImaginaryPart() / sq);
     return inverse;
 }
 
-ComplexNumber multiplyComplexNumber(ComplexNumber z, ld alpha) {
+ComplexNumber ComplexNumber::multiplyComplexNumber(ComplexNumber z, ld alpha) {
     z.setRealPart(z.getRealPart() * alpha);
     z.setImaginaryPart(z.getImaginaryPart() * alpha);
     return z;
 }
 
-ComplexNumber complexConjugate(ComplexNumber z) {
+ComplexNumber ComplexNumber::complexConjugate(ComplexNumber z) {
     ComplexNumber conjugate(z.getRealPart(), (-1) * z.getImaginaryPart());
     return conjugate;
 }

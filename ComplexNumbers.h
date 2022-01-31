@@ -47,13 +47,14 @@ public:
 
     vector<ComplexNumber> root(ComplexNumber);
 
+    ComplexNumber multiplyComplexNumber(ComplexNumber z, ld alpha);
+
+    ComplexNumber complexConjugate(ComplexNumber z);
+
+    ComplexNumber multiplicativeInverse(ComplexNumber z);
 };
 
-ComplexNumber multiplyComplexNumber(ComplexNumber z, ld);
 
-ComplexNumber complexConjugate(ComplexNumber);
-
-ComplexNumber multiplicativeInverse(ComplexNumber);
 //ComplexNumber complexOpposite(ComplexNumber);
 
 
