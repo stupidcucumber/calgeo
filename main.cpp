@@ -1,12 +1,14 @@
-#include "Geometry.h"
+#include "Matrices.h"
 
 using namespace std;
 
 int main(){
+    cMatrix m(110,110);
+    m.randValues(-10, 100);
 
-    Line line({1, 1, 1}, {0, 1, 0});
-    Plane plane({1, 1, 1}, {0, 0, 0});
+    m.showMatrix();
+    cout << endl;
 
-    cout << plane.isPerpendicular(line) << endl;
-
+    ComplexNumber c = m.determinant();
+    c.showNumber();
 }

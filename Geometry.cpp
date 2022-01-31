@@ -96,7 +96,7 @@ vector<ld> pointLineCross(Line line1, Line line2){
         consts.push_back( line2.getDefPoint()[i] - line1.getDefPoint()[i] );
     }
     m.setMatrix(v);
-    ld t = m.solveEquasion(consts)[0];
+    ld t = m.solveEquation(consts)[0];
     for(lli i = 0; i < 3; i++){
         answer.push_back( line1.getDirectV()[i] * t + line1.getDefPoint()[i] );
     }
@@ -154,7 +154,7 @@ bool Plane::isPerpendicular(Line line){
 
 bool Elipsoid::isPointBelongs(vector<ld> v){
     if(v.size() != coeficients.size()) throw std::logic_error("Different dimensions!");
-    if(!isEquasionCanonic()) throw std::logic_error("Equasion is not canonic!");
+    if(!isEquationCanonic()) throw std::logic_error("Equasion is not canonic!");
 
     ld t = 0;
     for(ui i = 0; i < v.size(); i++){
@@ -164,7 +164,7 @@ bool Elipsoid::isPointBelongs(vector<ld> v){
     else return false;
 }
 
-bool Elipsoid::isEquasionCanonic(){
+bool Elipsoid::isEquationCanonic(){
     bool result= true;
     for(int i=0; i< coeficients.size();i++){
         if (coeficients[i]==0) {result=false;break;}
@@ -184,7 +184,7 @@ ld Elipsoid::findExcetricity(){
 }
 
 vector<std::pair<std::string, ld>> Elipsoid::findDirectrix(){
-    if(!isEquasionCanonic()) throw std::logic_error("Equasion is not canonic!");
+    if(!isEquationCanonic()) throw std::logic_error("Equation is not canonic!");
 
     vector<std::pair<std::string, ld>> result;
     std::pair<std::string, ld> resultSmall;

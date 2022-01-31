@@ -74,25 +74,25 @@ build cmake_object_order_depends_target_calgeo: phony || CMakeFiles/calgeo.dir
 
 build CMakeFiles/calgeo.dir/main.cpp.o: CXX_COMPILER__calgeo_Debug /Users/viktoriaandrusenko/CLionProjects/calgeo$ 0.0.3$ 2/calgeo$ 0.0.3/main.cpp || cmake_object_order_depends_target_calgeo
   DEP_FILE = CMakeFiles/calgeo.dir/main.cpp.o.d
-  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++17
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++2a
   OBJECT_DIR = CMakeFiles/calgeo.dir
   OBJECT_FILE_DIR = CMakeFiles/calgeo.dir
 
 build CMakeFiles/calgeo.dir/ComplexNumbers.cpp.o: CXX_COMPILER__calgeo_Debug /Users/viktoriaandrusenko/CLionProjects/calgeo$ 0.0.3$ 2/calgeo$ 0.0.3/ComplexNumbers.cpp || cmake_object_order_depends_target_calgeo
   DEP_FILE = CMakeFiles/calgeo.dir/ComplexNumbers.cpp.o.d
-  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++17
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++2a
   OBJECT_DIR = CMakeFiles/calgeo.dir
   OBJECT_FILE_DIR = CMakeFiles/calgeo.dir
 
 build CMakeFiles/calgeo.dir/Matrices.cpp.o: CXX_COMPILER__calgeo_Debug /Users/viktoriaandrusenko/CLionProjects/calgeo$ 0.0.3$ 2/calgeo$ 0.0.3/Matrices.cpp || cmake_object_order_depends_target_calgeo
   DEP_FILE = CMakeFiles/calgeo.dir/Matrices.cpp.o.d
-  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++17
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++2a
   OBJECT_DIR = CMakeFiles/calgeo.dir
   OBJECT_FILE_DIR = CMakeFiles/calgeo.dir
 
 build CMakeFiles/calgeo.dir/Geometry.cpp.o: CXX_COMPILER__calgeo_Debug /Users/viktoriaandrusenko/CLionProjects/calgeo$ 0.0.3$ 2/calgeo$ 0.0.3/Geometry.cpp || cmake_object_order_depends_target_calgeo
   DEP_FILE = CMakeFiles/calgeo.dir/Geometry.cpp.o.d
-  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++17
+  FLAGS = -g -isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.3.sdk -std=gnu++2a
   OBJECT_DIR = CMakeFiles/calgeo.dir
   OBJECT_FILE_DIR = CMakeFiles/calgeo.dir
 

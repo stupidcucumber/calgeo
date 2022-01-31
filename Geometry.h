@@ -46,13 +46,6 @@ public:
     bool isPointBelong(vector <ld>);
 };
 
-
-/*
- * Matrices
- */
-vector<vector<ld>> matrixProduct(vector<vector<ld>>, vector<vector<ld>>, bool side = true);
-void showMatrix(vector<vector<ld>>);
-
 class Quadric{
 protected:
     vector<ld> coeficients;
@@ -61,7 +54,7 @@ protected:
     ld exc; //excetricity
     ld drx; //directix
 public:
-    virtual bool isEquasionCanonic() = 0;
+    virtual bool isEquationCanonic() = 0;
     virtual bool isPointBelongs(vector<ld>) = 0;
 
     virtual ld findExcetricity() = 0;
@@ -78,7 +71,7 @@ public:
     Elipsoid(vector<ld> e){
         coeficients=e;
     }
-    bool isEquasionCanonic();
+    bool isEquationCanonic();
     bool isPointBelongs(vector<ld>);
     /**
      * @return the coordinate of directrix

@@ -572,7 +572,7 @@ Matrix Matrix::operator+(Matrix m){
     return result;
 }
 Matrix Matrix::operator-(Matrix m){
-    if(rows != m.getRows() || columns != m.getColumns()) throw std::logic_error("Matrixes must be of the same size!");
+    if(rows != m.getRows() || columns != m.getColumns()) throw std::logic_error("Matrices must be of the same size!");
 
     Matrix result(m.getRows(), m.getColumns());
 
@@ -613,7 +613,7 @@ Matrix Matrix::operator*(Matrix m) {
     return result;
 }
 Matrix Matrix::operator/(Matrix m){
-    if(m.getRows() != m.getColumns()) throw std::logic_error("Only square matrixes!");
+    if(m.getRows() != m.getColumns()) throw std::logic_error("Only square matrices!");
     if( columns != m.getRows() ) throw std::logic_error("Matrices have different dimensions!");
 
     Matrix newM(m.getRows(), m.getRows());
@@ -623,7 +623,7 @@ Matrix Matrix::operator/(Matrix m){
 Matrix Matrix::operator^(int power){
     Matrix result(rows,columns);
 
-    if (rows!=columns) throw std::logic_error("You can use only squere matrix!");
+    if (rows!=columns) throw std::logic_error("You can use only square matrix!");
 
     if (power == 0) {
         Matrix z(rows,columns);
@@ -649,14 +649,14 @@ Matrix Matrix::operator^(int power){
     return result;
 }
 
-vector<ld> Matrix::solveEquasion(vector<ld> constantT){
+vector<ld> Matrix::solveEquation(vector<ld> constantT){
     vector<ld>result={};
     unsigned int rank =(*this).rank();
 
-    if(rank!=(*this).rankofExtended(constantT)){
+    if(rank!=(*this).rankOfExtended(constantT)){
         std::cout<<"System does not have solutions (rank of matrix != rank of extended matrix)"<<std::endl;
     }
-    else if ((rank<columns)&&(rank==(*this).rankofExtended(constantT))){
+    else if ((rank<columns)&&(rank==(*this).rankOfExtended(constantT))){
         throw std::logic_error("Endless number of solutions! Use findGeneralSolution() instead");
     }
     else {
@@ -726,7 +726,7 @@ vector<vector<ld>> Matrix::findGeneralSolution(vector<ld> constantT){
     vector<vector<ld>>result;
     unsigned int rank =(*this).rank();
 
-    if(rank!=(*this).rankofExtended(constantT)){
+    if(rank!=(*this).rankOfExtended(constantT)){
         std::cout<<"System does not have solutions (rank of matrix != rank of extended matrix)"<<std::endl;
         return result;
     }
@@ -734,11 +734,11 @@ vector<vector<ld>> Matrix::findGeneralSolution(vector<ld> constantT){
         std::cout<<"System does not have solutions"<<std::endl;
         return result;
     }
-    else if ((rank==columns)&&(rank==(*this).rankofExtended(constantT))) {
-        result.push_back((*this).solveEquasion(constantT));
+    else if ((rank==columns)&&(rank==(*this).rankOfExtended(constantT))) {
+        result.push_back((*this).solveEquation(constantT));
         return result;
     }
-    else if ((rank<columns)&&(rank==(*this).rankofExtended(constantT))) {
+    else if ((rank<columns)&&(rank==(*this).rankOfExtended(constantT))) {
         Matrix input(rows, columns);
         input.setMatrix(matrix);
         vector<ld> copyofinput = constantT;
@@ -803,7 +803,7 @@ vector<vector<ld>> Matrix::findGeneralSolution(vector<ld> constantT){
         }
 
         {   //finds partial solution
-            vector <ld> t=copy.solveEquasion(constantT);
+            vector <ld> t= copy.solveEquation(constantT);
             vector <ld> tempresult;
             for(int i=0,j=0,h=0;h<columns;h++){
                 if(i<indexbasic.size()){
@@ -830,7 +830,7 @@ vector<vector<ld>> Matrix::findGeneralSolution(vector<ld> constantT){
                 copyfree[j]=(-1)*input.matrix[j][b];
             }
             b++;
-            vector <ld> t=copy.solveEquasion(copyfree);
+            vector <ld> t= copy.solveEquation(copyfree);
             vector <ld> tempresult;
             for(int n=0,j=0,h=0; h < columns; h++){
                 if(n<indexbasic.size()){
@@ -881,7 +881,7 @@ unsigned int Matrix::rank(){
     return result;
 }
 
-unsigned int Matrix::rankofExtended(vector<ld> constantT){
+unsigned int Matrix::rankOfExtended(vector<ld> constantT){
     Matrix copy(rows,columns+1);
 
     vector<ld> temp;

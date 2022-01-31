@@ -16,4 +16,5 @@ const ld accuracy = 1e-11;
 const lli sci = 4;
 
 
+
 #endif //CALGEO_CONSTANTS_H
