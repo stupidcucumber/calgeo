@@ -1149,7 +1149,7 @@ vector<vector<ComplexNumber>> cMatrix::inverseMatrix() {
         }
         if (matrix[i][g] != k) {
             for (lli j = i - 1; j >= 0; j--) {
-                addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
             }
             i--;
         }
@@ -1223,7 +1223,7 @@ void cMatrix::triangle(bool side){
              */
             if (matrix[i][g] != k) {
                 for (lli j = i + 1; j < rows; j++) {
-                    addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                    addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
                 }
                 i++;
             }
@@ -1241,7 +1241,7 @@ void cMatrix::triangle(bool side){
             }
             if (matrix[i][g] != k) {
                 for (lli j = i - 1; j >= 0; j--) {
-                    addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                    addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
                 }
                 i--;
             }
@@ -1293,7 +1293,7 @@ vector<ComplexNumber> cMatrix::solveEquation(vector<ComplexNumber> constantT){//
         }
         if (matrix[i][g] != k) {
             for (lli j = i - 1; j >= 0; j--) {
-                addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
             }
             i--;
         }
