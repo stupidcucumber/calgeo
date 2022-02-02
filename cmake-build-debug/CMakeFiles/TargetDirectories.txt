@@ -1,3 +1,0 @@
-E:/Projects/calgeo/calgeo/cmake-build-debug/CMakeFiles/edit_cache.dir
-E:/Projects/calgeo/calgeo/cmake-build-debug/CMakeFiles/calgeo.dir
-E:/Projects/calgeo/calgeo/cmake-build-debug/CMakeFiles/rebuild_cache.dir

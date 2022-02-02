@@ -1,6 +1,6 @@
 #include "Matrices.h"
 #include "iomanip"
-
+#include <cmath>
 void Matrix::setMatrix(vector<vector<ld>> inputMatrix){
     matrix.clear();
     for (int i = 0; i < rows - 1; i++) {
@@ -216,7 +216,7 @@ void Matrix::addRows(ld coefficient, lli targetRow, lli additionRow){
 
     for(lli i = 0; i < columns; i++){
         matrix[targetRow][i] += coefficient * (matrix[additionRow][i]);
-        if (fabs(matrix[targetRow][i]) < accuracy) matrix[targetRow][i]=0;
+        if (std::fabs(matrix[targetRow][i]) < accuracy) matrix[targetRow][i]=0;
     }
 }
 
@@ -227,7 +227,7 @@ void Matrix::addColumns(ld coefficient, lli targetColumn, lli additionColumn){
 
     for(lli i = 0 ; i < rows; i++){
         matrix[i][targetColumn] += coefficient * (matrix[i][additionColumn]);
-        if (fabs(matrix[targetColumn][i])< accuracy) matrix[targetColumn][i]=0;
+        if (std::fabs(matrix[targetColumn][i])< accuracy) matrix[targetColumn][i]=0;
     }
 }
 
@@ -603,7 +603,7 @@ Matrix Matrix::operator*(Matrix m) {
             for(lli j = 0; j < columns; j++){
                 t += matrix[i][j] * m.matrix[j][k];
             }
-            if(abs(t)>accuracy) productSmall.push_back(t);
+            if(std::fabs(t)>accuracy) productSmall.push_back(t);
             else productSmall.push_back(0);
             t = 0;
         }
@@ -714,7 +714,7 @@ vector<ld> Matrix::solveEquation(vector<ld> constantT){
 
         for (int i = 0; i < columns; i++) {
             // cout << constantT[i] << endl;
-            if(abs(constantT[i] / copy.matrix[i][i])>accuracy) {
+            if(std::fabs(constantT[i] / copy.matrix[i][i])>accuracy) {
                 result.push_back(constantT[i] / copy.matrix[i][i]);
             }else result.push_back(0);
         }
@@ -979,8 +979,8 @@ void cMatrix::addColumns(ComplexNumber coefficient, lli targetColumn, lli additi
 
     for(lli i = 0 ; i < rows; i++){
         matrix[i][targetColumn] = matrix[i][targetColumn] + coefficient*matrix[i][additionColumn];
-        if (fabs(matrix[targetColumn][i].getRealPart())< accuracy) matrix[targetColumn][i].setRealPart(0);
-        if (fabs(matrix[targetColumn][i].getImaginaryPart())< accuracy) matrix[targetColumn][i].setImaginaryPart(0);
+        if (std::fabs(matrix[targetColumn][i].getRealPart())< accuracy) matrix[targetColumn][i].setRealPart(0);
+        if (std::fabs(matrix[targetColumn][i].getImaginaryPart())< accuracy) matrix[targetColumn][i].setImaginaryPart(0);
     }
 }
 
@@ -990,8 +990,8 @@ void cMatrix::addRows(ComplexNumber coefficient, lli targetRow, lli additionRow)
     }
     for (lli i = 0; i < columns; i++) {
         matrix[targetRow][i] = matrix[targetRow][i] + coefficient*matrix[additionRow][i];
-        if (fabs(matrix[targetRow][i].getRealPart()) < accuracy) matrix[targetRow][i].setRealPart(0);
-        if (fabs(matrix[targetRow][i].getImaginaryPart()) < accuracy) matrix[targetRow][i].setImaginaryPart(0);
+        if (std::fabs(matrix[targetRow][i].getRealPart()) < accuracy) matrix[targetRow][i].setRealPart(0);
+        if (std::fabs(matrix[targetRow][i].getImaginaryPart()) < accuracy) matrix[targetRow][i].setImaginaryPart(0);
     }
 }
 
@@ -1050,10 +1050,10 @@ cMatrix cMatrix::operator*(cMatrix m) {
             for(lli j = 0; j < columns; j++){
                 t = t + matrix[i][j] * m.matrix[j][k];
             }
-            if(abs(t.getRealPart()) < accuracy){
+            if(std::fabs(t.getRealPart()) < accuracy){
                 t.setRealPart(0);
             }
-            if(abs(t.getImaginaryPart()) < accuracy){
+            if(std::fabs(t.getImaginaryPart()) < accuracy){
                 t.setImaginaryPart(0);
             }
             productSmall.push_back(t);
@@ -1300,7 +1300,7 @@ vector<ComplexNumber> cMatrix::solveEquation(vector<ComplexNumber> constantT){//
         g--;
     }
     for(lli h = 0; h < rows; h++){
-        if(abs((matrix[h][columns - 1] / matrix[h][h]).getRealPart()) > accuracy || abs((matrix[h][columns - 1] / matrix[h][h]).getImaginaryPart()) > accuracy)
+        if(std::fabs((matrix[h][columns - 1] / matrix[h][h]).getRealPart()) > accuracy || std::fabs((matrix[h][columns - 1] / matrix[h][h]).getImaginaryPart()) > accuracy)
             result.push_back(matrix[h][columns - 1] / matrix[h][h]);
         else result.push_back(k);
     }

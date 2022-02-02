@@ -1,7 +1,7 @@
 #include "Geometry.h"
 #include "Vectors.h"
 #include "Matrices.h"
-
+#include <cmath>
 /*
  * Points
  */
@@ -148,7 +148,7 @@ bool Plane::isPointBelong(vector<ld> input) {
 }
 
 bool Plane::isPerpendicular(Line line) {
-    if (abs(abs(scalarProduct(line.getDirectV(), direct)) - vectorLength(line.getDirectV()) * vectorLength(direct)) <
+    if (std::fabs(std::fabs(scalarProduct(line.getDirectV(), direct)) - vectorLength(line.getDirectV()) * vectorLength(direct)) <
         accuracy)
         return 1;
     else return 0;
@@ -166,7 +166,7 @@ bool Ellipsoid::isPointBelongs(vector<ld> v) {
     for (ui i = 0; i < v.size(); i++) {
         t += pow(v[i] / coeficients[i], 2);
     }
-    if (abs(t - 1) < accuracy) return true;
+    if (std::fabs(t - 1) < accuracy) return true;
     else return false;
 }
 

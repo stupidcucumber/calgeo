@@ -1,3 +1,0 @@
-"E:\Software\CLion 2021.2.3\bin\cmake\win\bin\cmake.exe" -E rm -f CMakeFiles\calgeo.dir/objects.a
-E:\Software\mingw\mingw32\bin\ar.exe cr CMakeFiles\calgeo.dir/objects.a @CMakeFiles\calgeo.dir\objects1.rsp
-E:\Software\mingw\mingw32\bin\g++.exe -g -Wl,--whole-archive CMakeFiles\calgeo.dir/objects.a -Wl,--no-whole-archive -o calgeo.exe -Wl,--out-implib,libcalgeo.dll.a -Wl,--major-image-version,0,--minor-image-version,0 @CMakeFiles\calgeo.dir\linklibs.rsp
