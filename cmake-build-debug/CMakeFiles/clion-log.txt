@@ -1,4 +1,0 @@
-/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -DCMAKE_MAKE_PROGRAM=/Applications/CLion.app/Contents/bin/ninja/mac/ninja -DCMAKE_CXX_COMPILER=/usr/bin/c++ -G Ninja "/Users/viktoriaandrusenko/CLionProjects/calgeo 0.0.3 2/calgeo 0.0.3"
--- Configuring done
--- Generating done
--- Build files have been written to: /Users/viktoriaandrusenko/CLionProjects/calgeo 0.0.3 2/calgeo 0.0.3/cmake-build-debug

@@ -118,7 +118,7 @@ public:
     virtual bool isEquasionCanonic() = 0;
     virtual bool isPointBelongs(vector<ld>) = 0;
 
-    virtual ld findExcetricity() = 0;
+    virtual ld findEсcentricity() = 0;
     virtual vector<pair<string, ld>> findDirectrix() = 0;
     //virtual vector<ld> findFocuses() = 0;
 
@@ -140,7 +140,7 @@ public:
       *     second row * ( 'a21 ) - first row * ( 'a11 )
       */
     vector<pair<string, ld>> findDirectrix();
-    ld findExcetricity();
+    ld findEсcentricity();
 };
 class Hyperboloid : public Quadric{
 public:

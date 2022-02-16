@@ -1,6 +1,6 @@
 #include "Matrices.h"
 #include "iomanip"
-
+#include <cmath>
 void Matrix::setMatrix(vector<vector<ld>> inputMatrix){
     matrix.clear();
     for (int i = 0; i < rows - 1; i++) {
@@ -105,7 +105,7 @@ void Matrix::showMatrix(){//maybe add as parameters precision and whitespaces
  * This is the function, which shows any matrix.
  * @param v – user matrix;
  */
-void showMatrix(vector<vector<ld>> v){
+void Matrix::showMatrix(vector<vector<ld>> v){
     std::cout.precision(2);
 
     for(lli i = 0; i < v.size(); i++){
@@ -114,7 +114,7 @@ void showMatrix(vector<vector<ld>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<float>> v){
+void Matrix::showMatrix(vector<vector<float>> v){
     std::cout.precision(2);
 
     for(lli i = 0; i < v.size(); i++){
@@ -123,7 +123,7 @@ void showMatrix(vector<vector<float>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<double>> v){
+void Matrix::showMatrix(vector<vector<double>> v){
     std::cout.precision(5);
 
     for(lli i = 0; i < v.size(); i++){
@@ -132,7 +132,7 @@ void showMatrix(vector<vector<double>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<int>> v){
+void Matrix::showMatrix(vector<vector<int>> v){
     std::cout.precision(5);
 
     for(lli i = 0; i < v.size(); i++){
@@ -141,7 +141,7 @@ void showMatrix(vector<vector<int>> v){
         std::cout << std::endl;
     }
 }
-void showMatrix(vector<vector<long long int>> v){
+void Matrix::showMatrix(vector<vector<long long int>> v){
     std::cout.precision(5);
 
     for(lli i = 0; i < v.size(); i++){
@@ -216,7 +216,7 @@ void Matrix::addRows(ld coefficient, lli targetRow, lli additionRow){
 
     for(lli i = 0; i < columns; i++){
         matrix[targetRow][i] += coefficient * (matrix[additionRow][i]);
-        if (fabs(matrix[targetRow][i]) < accuracy) matrix[targetRow][i]=0;
+        if (std::fabs(matrix[targetRow][i]) < accuracy) matrix[targetRow][i]=0;
     }
 }
 
@@ -227,7 +227,7 @@ void Matrix::addColumns(ld coefficient, lli targetColumn, lli additionColumn){
 
     for(lli i = 0 ; i < rows; i++){
         matrix[i][targetColumn] += coefficient * (matrix[i][additionColumn]);
-        if (fabs(matrix[targetColumn][i])< accuracy) matrix[targetColumn][i]=0;
+        if (std::fabs(matrix[targetColumn][i])< accuracy) matrix[targetColumn][i]=0;
     }
 }
 
@@ -507,7 +507,7 @@ void Matrix::clearMatrix() {matrix.clear();}
  * @param side – if 'false' then (matrix2) * (matrix1), else then (matrix1) * (matrix2). By default set as 'true'
  * @return
  */
-vector<vector<ld>> matrixProduct(vector<vector<ld>> matrix1, vector<vector<ld>> matrix2, bool side) {
+vector<vector<ld>> Matrix::matrixProduct(vector<vector<ld>> matrix1, vector<vector<ld>> matrix2, bool side) {
     vector<vector<ld>> product;
     if(side){
         if(matrix1[0].size() != matrix2.size()){
@@ -603,7 +603,7 @@ Matrix Matrix::operator*(Matrix m) {
             for(lli j = 0; j < columns; j++){
                 t += matrix[i][j] * m.matrix[j][k];
             }
-            if(abs(t)>accuracy) productSmall.push_back(t);
+            if(std::fabs(t)>accuracy) productSmall.push_back(t);
             else productSmall.push_back(0);
             t = 0;
         }
@@ -714,7 +714,7 @@ vector<ld> Matrix::solveEquation(vector<ld> constantT){
 
         for (int i = 0; i < columns; i++) {
             // cout << constantT[i] << endl;
-            if(abs(constantT[i] / copy.matrix[i][i])>accuracy) {
+            if(std::fabs(constantT[i] / copy.matrix[i][i])>accuracy) {
                 result.push_back(constantT[i] / copy.matrix[i][i]);
             }else result.push_back(0);
         }
@@ -979,8 +979,8 @@ void cMatrix::addColumns(ComplexNumber coefficient, lli targetColumn, lli additi
 
     for(lli i = 0 ; i < rows; i++){
         matrix[i][targetColumn] = matrix[i][targetColumn] + coefficient*matrix[i][additionColumn];
-        if (fabs(matrix[targetColumn][i].getRealPart())< accuracy) matrix[targetColumn][i].setRealPart(0);
-        if (fabs(matrix[targetColumn][i].getImaginaryPart())< accuracy) matrix[targetColumn][i].setImaginaryPart(0);
+        if (std::fabs(matrix[targetColumn][i].getRealPart())< accuracy) matrix[targetColumn][i].setRealPart(0);
+        if (std::fabs(matrix[targetColumn][i].getImaginaryPart())< accuracy) matrix[targetColumn][i].setImaginaryPart(0);
     }
 }
 
@@ -990,8 +990,8 @@ void cMatrix::addRows(ComplexNumber coefficient, lli targetRow, lli additionRow)
     }
     for (lli i = 0; i < columns; i++) {
         matrix[targetRow][i] = matrix[targetRow][i] + coefficient*matrix[additionRow][i];
-        if (fabs(matrix[targetRow][i].getRealPart()) < accuracy) matrix[targetRow][i].setRealPart(0);
-        if (fabs(matrix[targetRow][i].getImaginaryPart()) < accuracy) matrix[targetRow][i].setImaginaryPart(0);
+        if (std::fabs(matrix[targetRow][i].getRealPart()) < accuracy) matrix[targetRow][i].setRealPart(0);
+        if (std::fabs(matrix[targetRow][i].getImaginaryPart()) < accuracy) matrix[targetRow][i].setImaginaryPart(0);
     }
 }
 
@@ -1050,10 +1050,10 @@ cMatrix cMatrix::operator*(cMatrix m) {
             for(lli j = 0; j < columns; j++){
                 t = t + matrix[i][j] * m.matrix[j][k];
             }
-            if(abs(t.getRealPart()) < accuracy){
+            if(std::fabs(t.getRealPart()) < accuracy){
                 t.setRealPart(0);
             }
-            if(abs(t.getImaginaryPart()) < accuracy){
+            if(std::fabs(t.getImaginaryPart()) < accuracy){
                 t.setImaginaryPart(0);
             }
             productSmall.push_back(t);
@@ -1149,7 +1149,7 @@ vector<vector<ComplexNumber>> cMatrix::inverseMatrix() {
         }
         if (matrix[i][g] != k) {
             for (lli j = i - 1; j >= 0; j--) {
-                addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
             }
             i--;
         }
@@ -1223,7 +1223,7 @@ void cMatrix::triangle(bool side){
              */
             if (matrix[i][g] != k) {
                 for (lli j = i + 1; j < rows; j++) {
-                    addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                    addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
                 }
                 i++;
             }
@@ -1241,7 +1241,7 @@ void cMatrix::triangle(bool side){
             }
             if (matrix[i][g] != k) {
                 for (lli j = i - 1; j >= 0; j--) {
-                    addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                    addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
                 }
                 i--;
             }
@@ -1268,7 +1268,7 @@ unsigned int cMatrix::cRank(){
     return result;
 }
 
-vector<ComplexNumber> cMatrix::solveEquasion(vector<ComplexNumber> constantT){//This doesn't work properly
+vector<ComplexNumber> cMatrix::solveEquation(vector<ComplexNumber> constantT){//This doesn't work properly
     //if(determinant() == 0 || rows != columns) throw std::logic_error("The inverse matrix doesn't exist!");
 
     vector<ComplexNumber> result;
@@ -1293,14 +1293,14 @@ vector<ComplexNumber> cMatrix::solveEquasion(vector<ComplexNumber> constantT){//
         }
         if (matrix[i][g] != k) {
             for (lli j = i - 1; j >= 0; j--) {
-                addRows(multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
+                addRows(ComplexNumber::multiplyComplexNumber(t / matrix[i][g] * matrix[j][g], -1), j, i);
             }
             i--;
         }
         g--;
     }
     for(lli h = 0; h < rows; h++){
-        if(abs((matrix[h][columns - 1] / matrix[h][h]).getRealPart()) > accuracy || abs((matrix[h][columns - 1] / matrix[h][h]).getImaginaryPart()) > accuracy)
+        if(std::fabs((matrix[h][columns - 1] / matrix[h][h]).getRealPart()) > accuracy || std::fabs((matrix[h][columns - 1] / matrix[h][h]).getImaginaryPart()) > accuracy)
             result.push_back(matrix[h][columns - 1] / matrix[h][h]);
         else result.push_back(k);
     }
@@ -1327,7 +1327,7 @@ vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber>
         return result;
     }
     else if ((rank==columns)&&(rank==extendedRank)) {
-        result.push_back((*this).solveEquasion(constantT));
+        result.push_back((*this).solveEquation(constantT));
         return result;
     }
 
@@ -1398,7 +1398,7 @@ vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber>
         }
 
         {   //finds partial solution
-            vector <ComplexNumber> t=copy.solveEquasion(constantT);
+            vector <ComplexNumber> t= copy.solveEquation(constantT);
             vector <ComplexNumber> tempresult;
             for(int i=0,j=0,h=0;h<columns;h++){
                 if(i<indexbasic.size()){
@@ -1426,7 +1426,7 @@ vector<vector<ComplexNumber>> cMatrix::findGeneralSolution(vector<ComplexNumber>
                 copyfree[j]=minusOne*input.matrix[j][b];
             }
             b++;
-            vector <ComplexNumber> t=copy.solveEquasion(copyfree);
+            vector <ComplexNumber> t= copy.solveEquation(copyfree);
             vector <ComplexNumber> tempresult;
             for(int n=0,j=0,h=0; h < columns; h++){
                 if(n<indexbasic.size()){

@@ -76,7 +76,7 @@ returns the determinant of a matrix, if it is square matrix.
 returns the matrix (represented as `vector<vector<long double>>` rather than object of type Matrix/cMatrix) multiplied from right or left by a given matrix.
 ### inverseMatrix() ⟹ `vector<vector<ld>>`
 returns the inverse matrix.
-### solveEquation(vector<long double> c) (solveEquasion() in code) ⟹ `vector<long double>`
+### solveEquation(vector<long double> c) (solveEquation() in code) ⟹ `vector<long double>`
 returns the solution to the corresponding linear equation system.
 ### findGeneralSolution(vector<long double> c) ⟹ `vector<vector<long double>>`
 returns a general solution to a corresponding linear equation system.
@@ -86,7 +86,7 @@ a bunch of operators (-, +, *, /, ^) to make work with matrices easier.
 Also there are some useful functions:
 ### matrixProduct(vector<vector<long double>> m1, vector<vector<long double>> m2, bool side = false) ⟹ `vector<vector<long double>>`
 returns the product of matrices.
-### showMatrix(vector<vector<long double>> m) ⟹ `void`
+### showMatrix(vector<vector<<long double/int/float/double/long long int>>> m) ⟹ `void`
 sends the matrix to the standard output.
 
 ##   Vectors
@@ -153,7 +153,7 @@ Currently we are working on it and trying to learn more about shapes in multidim
 checks whether the equation is canonic.
 ### isPointBelongs(vector<long double> p) ⟹ `bool`
 checks whether the point belongs to the ellipse.
-### findExcetricity() ⟹ `long double`
+### findEccentricity() ⟹ `long double`
 returns the eccentricity of the ellipse.
 ### findDirectrix() ⟹ `vector<pair<string, long double>>`
 returns the directrix of the ellipse.
